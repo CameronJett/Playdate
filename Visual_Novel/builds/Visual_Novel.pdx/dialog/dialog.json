@@ -1,11 +1,17 @@
 {
-    "ACT_1": {
-        "id": {
-            "dialog_list": [
+    "ACT_1": [
+        {
+            "id": 0,
+            "dialog_buttons": [
                 {
-
+                    "button_id": 0,
+                    "button_text": "Dialog option 0"
+                },
+                {
+                    "button_id": 1,
+                    "button_text": "Dialog option 1"
                 }
             ]
         }
-    }
+    ]
 }

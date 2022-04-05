@@ -1,0 +1,1 @@
+pdc "C:\Users\edge4\Projects\Playdate\Sprite_Testing\source" "C:\Users\edge4\Projects\Playdate\Sprite_Testing\game.pdx"

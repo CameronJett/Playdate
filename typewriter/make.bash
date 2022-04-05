@@ -1,0 +1,1 @@
+pdc "C:\Users\edge4\Projects\Playdate\typewriter\source" "C:\Users\edge4\Projects\Playdate\typewriter\game.pdx"

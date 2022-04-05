@@ -1,1 +1,0 @@
-pdc "C:\Users\edge4\Projects\Playdate\Master_Base_Project\source" "C:\Users\edge4\Projects\Playdate\Master_Base_Project\game.pdx"

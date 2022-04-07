@@ -9,12 +9,21 @@ local buttons = {}
 local button_highlight = gfx.sprite.new()
 button_highlight:setImage(gfx.image.new("sprites/menu/dialog_button_selector"))
 button_highlight:setZIndex(100)
-button_highlight:moveTo(200,120)
 button_highlight:add()
+local current_selected_button = 1
 
 local buttons_x_location = 200
-local buttons_y_location = 0
-local buttons_y_separation = 50
+local buttons_y_location = 21+33/2
+local buttons_y_separation = 22+33
+-- 21
+-- 33
+-- 22
+-- 33
+-- 22
+-- 33
+-- 22
+-- 33
+-- 21
 
 local show_buttons = true -- if buttons are shown, update, allow inputs, draw them
 
@@ -22,11 +31,39 @@ class("dialog_button_manager").extends()
 
 function dialog_button_manager:init()
     local dialog_button1 = dialog_button.new("DIALOG 1")
+    dialog_button1:move_to(buttons_x_location, buttons_y_location)
     self:add_button(dialog_button1)
+
+    button_highlight:moveTo(buttons_x_location, buttons_y_location)
+
     local dialog_button2 = dialog_button.new("DIALOG 2")
     dialog_button2:displayName()
-    dialog_button2:move_to(200, 170)
+    dialog_button2:move_to(buttons_x_location, (buttons_y_location + buttons_y_separation))
     self:add_button(dialog_button2)
+
+    local dialog_button3 = dialog_button.new("DIALOG 3")
+    dialog_button3:displayName()
+    dialog_button3:move_to(buttons_x_location, (buttons_y_location + buttons_y_separation * 2))
+    self:add_button(dialog_button3)
+
+    local dialog_button4 = dialog_button.new("DIALOG 4")
+    dialog_button4:displayName()
+    dialog_button4:move_to(buttons_x_location, (buttons_y_location + buttons_y_separation * 3))
+    self:add_button(dialog_button4)
+end
+
+function playdate.upButtonUp()
+	if current_selected_button ~= 1 then
+        button_highlight:moveBy(0, -buttons_y_separation)
+        current_selected_button -= 1
+    end
+end
+
+function playdate.downButtonUp()
+	if current_selected_button < #buttons then
+        button_highlight:moveBy(0, buttons_y_separation)
+        current_selected_button += 1
+    end
 end
 
 function dialog_button_manager:add_button(new_button)

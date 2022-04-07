@@ -29,3 +29,14 @@ function playdate.update()
 	drawGame()
 	playdate.drawFPS(0,0) -- FPS widget
 end
+
+-- 400 x 240
+-- 21
+-- 33
+-- 22
+-- 33
+-- 22
+-- 33
+-- 22
+-- 33
+-- 21

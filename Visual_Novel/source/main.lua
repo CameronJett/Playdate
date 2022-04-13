@@ -1,6 +1,8 @@
 import "dialog_button_manager"
+import "examine_selector"
 
 local dialog_button_manager = dialog_button_manager()
+local examine_selector = examine_selector()
 
 local gfx <const> = playdate.graphics
 local font = gfx.font.new('font/Mini Sans 2X') -- DEMO
@@ -11,7 +13,7 @@ local function loadGame()
 end
 
 local function updateGame()
-	
+	examine_selector:update()
 end
 
 local function drawGame()
@@ -20,6 +22,7 @@ local function drawGame()
 	gfx.sprite.update()
 
 	dialog_button_manager:draw()
+	examine_selector:draw()
 end
 
 loadGame()

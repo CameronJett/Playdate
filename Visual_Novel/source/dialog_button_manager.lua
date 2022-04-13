@@ -25,7 +25,7 @@ local buttons_y_separation = 22+33
 -- 33
 -- 21
 
-local show_buttons = true -- if buttons are shown, update, allow inputs, draw them
+local show_buttons = false -- if buttons are shown, update, allow inputs, draw them
 
 class("dialog_button_manager").extends()
 
@@ -53,14 +53,14 @@ function dialog_button_manager:init()
 end
 
 function playdate.upButtonUp()
-	if current_selected_button ~= 1 then
+	if show_buttons and current_selected_button ~= 1 then
         button_highlight:moveBy(0, -buttons_y_separation)
         current_selected_button -= 1
     end
 end
 
 function playdate.downButtonUp()
-	if current_selected_button < #buttons then
+	if show_buttons and current_selected_button < #buttons then
         button_highlight:moveBy(0, buttons_y_separation)
         current_selected_button += 1
     end
@@ -101,3 +101,6 @@ function dialog_button_manager:draw()
 end
 
 -- if show_buttons, and a button pressed, start dialog for selected button
+
+-- TODO: show/hide buttons functions
+-- TODO: on show set current selected button to first button

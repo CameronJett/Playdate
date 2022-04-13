@@ -31,5 +31,7 @@ end
 function dialog_button:draw(show_buttons)
     self.sprite:setVisible(show_buttons)
 
-    gfx.drawTextInRect(self.button_text, self.sprite.x -20, self.sprite.y -10, 200, 20)
+    if show_buttons then
+        gfx.drawTextInRect(self.button_text, self.sprite.x -20, self.sprite.y -10, 200, 20)
+    end
 end

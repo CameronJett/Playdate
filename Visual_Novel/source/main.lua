@@ -1,7 +1,9 @@
+import "main_menu"
 import "dialog_button_manager"
 import "examine_selector"
 
-local dialog_button_manager = dialog_button_manager()
+local main_menu = main_menu()
+-- local dialog_button_manager = dialog_button_manager()
 local examine_selector = examine_selector()
 
 local gfx <const> = playdate.graphics
@@ -21,6 +23,7 @@ local function drawGame()
 
 	gfx.sprite.update()
 
+	main_menu:draw()
 	dialog_button_manager:draw()
 	examine_selector:draw()
 end
@@ -32,14 +35,3 @@ function playdate.update()
 	drawGame()
 	playdate.drawFPS(0,0) -- FPS widget
 end
-
--- 400 x 240
--- 21
--- 33
--- 22
--- 33
--- 22
--- 33
--- 22
--- 33
--- 21

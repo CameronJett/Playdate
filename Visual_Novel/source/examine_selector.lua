@@ -20,7 +20,7 @@ local move_speed = 2
 class("examine_selector").extends()
 
 function examine_selector:init()
-    show_selector = true
+    show_selector = false
 end
 
 function examine_selector:update()

@@ -37,34 +37,31 @@ function dialog_button_manager:init()
     button_highlight:moveTo(buttons_x_location, buttons_y_location)
 
     local dialog_button2 = dialog_button.new("DIALOG 2")
-    dialog_button2:displayName()
     dialog_button2:move_to(buttons_x_location, (buttons_y_location + buttons_y_separation))
     self:add_button(dialog_button2)
 
     local dialog_button3 = dialog_button.new("DIALOG 3")
-    dialog_button3:displayName()
     dialog_button3:move_to(buttons_x_location, (buttons_y_location + buttons_y_separation * 2))
     self:add_button(dialog_button3)
 
     local dialog_button4 = dialog_button.new("DIALOG 4")
-    dialog_button4:displayName()
     dialog_button4:move_to(buttons_x_location, (buttons_y_location + buttons_y_separation * 3))
     self:add_button(dialog_button4)
 end
 
-function playdate.upButtonUp()
-	if show_buttons and current_selected_button ~= 1 then
-        button_highlight:moveBy(0, -buttons_y_separation)
-        current_selected_button -= 1
-    end
-end
+-- function playdate.upButtonUp()
+-- 	if show_buttons and current_selected_button ~= 1 then
+--         button_highlight:moveBy(0, -buttons_y_separation)
+--         current_selected_button -= 1
+--     end
+-- end
 
-function playdate.downButtonUp()
-	if show_buttons and current_selected_button < #buttons then
-        button_highlight:moveBy(0, buttons_y_separation)
-        current_selected_button += 1
-    end
-end
+-- function playdate.downButtonUp()
+-- 	if show_buttons and current_selected_button < #buttons then
+--         button_highlight:moveBy(0, buttons_y_separation)
+--         current_selected_button += 1
+--     end
+-- end
 
 function dialog_button_manager:add_button(new_button)
     table.insert(buttons, new_button)

@@ -35,7 +35,7 @@ local buttons_y_separation = buttons_y_button_spacer+buttons_y_size
 
 --  10  175  30  175  10
 
-local show_buttons = true -- if buttons are shown, update, allow inputs, draw them
+local enabled = false -- if enabled; update, allow inputs, draw
 
 class("main_menu").extends()
 
@@ -59,57 +59,55 @@ function main_menu:init()
     self:add_button(present_button)
 end
 
-function playdate.upButtonUp()
-	if show_buttons and current_selected_button_y == 2 then
-        button_highlight:moveBy(0, -buttons_y_separation)
-        current_selected_button_y -= 1
-    end
-end
-
-function playdate.downButtonUp()
-	if show_buttons and current_selected_button_y == 1 then
-        button_highlight:moveBy(0, buttons_y_separation)
-        current_selected_button_y += 1
-    end
-end
-
-function playdate.rightButtonUp()
-	if show_buttons and current_selected_button_x == 1 then
-        button_highlight:moveBy(buttons_x_separation, 0)
-        current_selected_button_x += 1
-    end
-end
-
-function playdate.leftButtonUp()
-	if show_buttons and current_selected_button_x == 2 then
-        button_highlight:moveBy(-buttons_x_separation, 0)
-        current_selected_button_x -= 1
-    end
-end
-
-
 function main_menu:add_button(new_button)
     table.insert(buttons, new_button)
-    self.update_button_y_location()
 end
 
 function main_menu:clear_buttons()
     buttons = {}
 end
 
-function main_menu:update_button_y_location()
-    -- Use number of buttons to determine starting height
+
+
+function main_menu:update()
+    if enabled then
+        self:process_input()
+    end
 end
 
-function main_menu:get_selected_button()
+function main_menu:process_input()
+    if playdate.buttonIsPressed( playdate.kButtonUp ) then
+        if current_selected_button_y == 2 then
+            button_highlight:moveBy(0, -buttons_y_separation)
+            current_selected_button_y -= 1
+        end
+    end
+    if playdate.buttonIsPressed( playdate.kButtonDown ) then
+        if current_selected_button_y == 1 then
+            button_highlight:moveBy(0, buttons_y_separation)
+            current_selected_button_y += 1
+        end
+    end
+    if playdate.buttonIsPressed( playdate.kButtonRight ) then
+        if current_selected_button_x == 1 then
+            button_highlight:moveBy(buttons_x_separation, 0)
+            current_selected_button_x += 1
+        end
+    end
 
+    if playdate.buttonIsPressed( playdate.kButtonLeft ) then
+        if current_selected_button_x == 2 then
+            button_highlight:moveBy(-buttons_x_separation, 0)
+            current_selected_button_x -= 1
+        end
+    end
 end
 
 function main_menu:draw()
-    button_highlight:setVisible(show_buttons)
+    button_highlight:setVisible(enabled)
 
     for i, v in ipairs(buttons) do
-        v:draw(show_buttons)
+        v:draw(enabled)
     end
 end
 

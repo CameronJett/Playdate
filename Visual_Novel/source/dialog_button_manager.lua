@@ -25,7 +25,7 @@ local buttons_y_separation = 22+33
 -- 33
 -- 21
 
-local show_buttons = false -- if buttons are shown, update, allow inputs, draw them
+local enabled = true -- if enabled; update, allow inputs, draw
 
 class("dialog_button_manager").extends()
 
@@ -49,23 +49,8 @@ function dialog_button_manager:init()
     self:add_button(dialog_button4)
 end
 
--- function playdate.upButtonUp()
--- 	if show_buttons and current_selected_button ~= 1 then
---         button_highlight:moveBy(0, -buttons_y_separation)
---         current_selected_button -= 1
---     end
--- end
-
--- function playdate.downButtonUp()
--- 	if show_buttons and current_selected_button < #buttons then
---         button_highlight:moveBy(0, buttons_y_separation)
---         current_selected_button += 1
---     end
--- end
-
 function dialog_button_manager:add_button(new_button)
     table.insert(buttons, new_button)
-    self.update_button_y_location()
 end
 
 function dialog_button_manager:generate_button_list_by_id(id)
@@ -74,10 +59,6 @@ end
 
 function dialog_button_manager:clear_buttons()
     buttons = {}
-end
-
-function dialog_button_manager:update_button_y_location()
-    -- Use number of buttons to determine starting height
 end
 
 function dialog_button_manager:has_dialog_buttons()
@@ -89,11 +70,34 @@ function dialog_button_manager:get_selected_button()
 
 end
 
+
+
+function dialog_button_manager:update()
+    if enabled then
+        self:process_input()
+    end
+end
+
+function dialog_button_manager:process_input()
+    if playdate.buttonJustPressed( playdate.kButtonUp ) then
+        if current_selected_button ~= 1 then
+            button_highlight:moveBy(0, -buttons_y_separation)
+            current_selected_button -= 1
+        end
+    end
+    if playdate.buttonJustPressed( playdate.kButtonDown ) then
+        if current_selected_button < #buttons then
+            button_highlight:moveBy(0, buttons_y_separation)
+            current_selected_button += 1
+        end
+    end
+end
+
 function dialog_button_manager:draw()
-    button_highlight:setVisible(show_buttons)
+    button_highlight:setVisible(enabled)
 
     for i, v in ipairs(buttons) do
-        v:draw(show_buttons)
+        v:draw(enabled)
     end
 end
 

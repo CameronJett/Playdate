@@ -3,7 +3,7 @@ import "dialog_button_manager"
 import "examine_selector"
 
 local main_menu = main_menu()
--- local dialog_button_manager = dialog_button_manager()
+local dialog_button_manager = dialog_button_manager()
 local examine_selector = examine_selector()
 
 local gfx <const> = playdate.graphics
@@ -16,6 +16,8 @@ end
 
 local function updateGame()
 	examine_selector:update()
+	main_menu:update()
+	dialog_button_manager:update()
 end
 
 local function drawGame()
